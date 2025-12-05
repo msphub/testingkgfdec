@@ -18,7 +18,7 @@
     * {margin:0; padding:0; box-sizing:border-box;}
     body {
       font-family:Poppins, sans-serif;
-      background:#0a0e2a;
+      background:#050816; /* darker, richer base */
       color:#f5f5f5;
       scroll-behavior:smooth;
       padding-top: 70px;
@@ -26,21 +26,32 @@
     
     header {
       position:fixed; top:0; left:0; width:100%;
-      background:#111;
+      background:#070b18;
       padding:12px 25px;
       display:flex; justify-content:space-between; align-items:center;
       z-index:1000;
+      box-shadow:0 4px 14px rgba(0,0,0,0.6);
     }
     header img {height:48px;}
     nav {display:flex; gap:20px;}
     nav a {
-      text-decoration:none; color:#f1c76d; font-weight:600;
-      transition:color 0.3s, border-bottom 0.3s;
+      text-decoration:none;
+      color:#F5C453;      /* royal gold */
+      font-weight:600;
+      transition:color 0.3s;
     }
-    nav a:hover {color:#fff;}
-    .menu-toggle {display:none; font-size:28px; color:#f1c76d; cursor:pointer;}
+    nav a:hover { color:#FF914D; }  /* warm orange hover */
+
+    .menu-toggle {display:none; font-size:28px; color:#F5C453; cursor:pointer;}
     @media (max-width:768px) {
-      nav {display:none; flex-direction:column; background:#111; position:absolute; top:70px; right:0; width:200px; padding:20px;}
+      nav {
+        display:none;
+        flex-direction:column;
+        background:#070b18;
+        position:absolute;
+        top:70px; right:0; width:200px; padding:20px;
+        box-shadow:-4px 4px 12px rgba(0,0,0,0.6);
+      }
       nav.show {display:flex;}
       .menu-toggle {display:block;}
     }
@@ -55,7 +66,7 @@
       text-align:center;
     }
 
-    h1,h2 {color:#f1c76d; margin-bottom:15px;}
+    h1,h2 {color:#F5C453; margin-bottom:15px;}
     h3 {color:#fff; margin:30px 0 15px;}
     p {max-width:700px; margin:10px auto; line-height:1.6;}
 
@@ -73,19 +84,19 @@
       content:"";
       position:absolute;
       inset:0;
-      background:rgba(0,0,0,0.45);
+      background:linear-gradient(to bottom, rgba(5,8,22,0.9), rgba(5,8,22,0.6));
     }
     #home > * {position:relative; z-index:1;}
     #home h1 {
       font-size:3rem;
       overflow:hidden;
       white-space:nowrap;
-      border-right:3px solid #f1c76d;
+      border-right:3px solid #F5C453;
       width:0;
       animation:typing 3s steps(30,end) forwards;
     }
     @keyframes typing {
-      from { width:0; border-right-color:#f1c76d; }
+      from { width:0; border-right-color:#F5C453; }
       to { width:100%; border-right-color:transparent; }
     }
     #home p {
@@ -106,12 +117,13 @@
       margin-top:10px;
     }
     .order-subheading {
-      text-align:left;
+      text-align:center;
       font-size:1.1rem;
-      color:#f1c76d;
-      margin:25px 0 8px;
-      border-bottom:1px solid #333;
+      color:#F5C453;
+      margin:25px auto 8px;
+      border-bottom:1px solid #2a3150;
       padding-bottom:4px;
+      max-width:260px;
     }
     .order-grid {
       display:grid;
@@ -120,20 +132,27 @@
       width:100%;
     }
     .order-card {
-      background:#141625;
+      background:#15182b;  /* rich navy card */
       padding:18px;
       border-radius:12px;
-      box-shadow:0 6px 18px rgba(0,0,0,0.4);
+      box-shadow:0 10px 24px rgba(0,0,0,0.55);
       text-align:left;
       display:flex;
       flex-direction:column;
       gap:8px;
+      border:1px solid rgba(245,196,83,0.08);
+      transition:transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .order-card:hover {
+      transform:translateY(-4px);
+      box-shadow:0 14px 32px rgba(0,0,0,0.7);
+      border-color:rgba(255,145,77,0.5);
     }
     .order-card p {margin:0;}
-    .price {font-weight:700; color:#f1c76d;}
+    .price {font-weight:700; color:#F5C453;}
     .badge {
       display:inline-block;
-      background:#f1c76d;
+      background:#F5C453;
       color:#111;
       font-size:0.75rem;
       padding:2px 6px;
@@ -142,8 +161,8 @@
       font-weight:700;
     }
     .order-card.signature {
-      border:2px solid gold;
-      box-shadow:0 0 15px rgba(255,215,0,0.7);
+      border:2px solid #FFD74D;
+      box-shadow:0 0 18px rgba(255,215,77,0.8);
       position:relative;
     }
 
@@ -154,7 +173,7 @@
       gap:8px;
     }
     .qty-btn {
-      background:#333;
+      background:#252a45;
       color:#fff;
       border:none;
       padding:6px 10px;
@@ -162,6 +181,7 @@
       cursor:pointer;
       font-size:0.9rem;
     }
+    .qty-btn:hover { background:#313861; }
     .qty-display {
       min-width:24px;
       text-align:center;
@@ -172,16 +192,17 @@
     .customer-info {
       max-width:700px;
       width:100%;
-      background:#141625;
+      background:#15182b;
       padding:16px 18px;
       border-radius:12px;
-      box-shadow:0 6px 18px rgba(0,0,0,0.4);
+      box-shadow:0 10px 26px rgba(0,0,0,0.65);
       text-align:left;
       margin-top:20px;
+      border:1px solid rgba(245,196,83,0.18);
     }
     .customer-info h3 {
       margin:0 0 10px;
-      color:#f1c76d;
+      color:#F5C453;
       text-align:left;
     }
     .customer-info label {
@@ -196,8 +217,8 @@
       width:100%;
       padding:8px 10px;
       border-radius:8px;
-      border:1px solid #333;
-      background:#0f1220;
+      border:1px solid #272e4a;
+      background:#0c1021;
       color:#fff;
       font-family:inherit;
       font-size:0.9rem;
@@ -206,10 +227,16 @@
       resize:vertical;
       min-height:60px;
     }
+    .customer-info input:focus,
+    .customer-info textarea:focus {
+      outline:none;
+      border-color:#FF914D;
+      box-shadow:0 0 0 1px rgba(255,145,77,0.5);
+    }
     #mainSubtotal {
       margin-top:10px;
       font-weight:700;
-      color:#f1c76d;
+      color:#F5C453;
     }
     .customer-info .btn-checkout-main {
       margin-top:10px;
@@ -221,12 +248,16 @@
       border-radius:10px;
       font-weight:800;
       cursor:pointer;
-      transition:opacity 0.2s, transform 0.1s;
+      transition:opacity 0.2s, transform 0.1s, box-shadow 0.2s;
+      box-shadow:0 8px 20px rgba(37,211,102,0.35);
     }
     .customer-info .btn-checkout-main[disabled] {
       opacity:0.5;
       cursor:not-allowed;
-      transform:none;
+      box-shadow:none;
+    }
+    .customer-info .btn-checkout-main:not([disabled]):hover {
+      box-shadow:0 10px 26px rgba(37,211,102,0.45);
     }
     .customer-info .btn-checkout-main:not([disabled]):active {
       transform:scale(0.98);
@@ -245,7 +276,7 @@
       font-weight:bold;
       display:none;
       z-index:3000;
-      box-shadow:0 4px 10px rgba(0,0,0,0.4);
+      box-shadow:0 4px 12px rgba(0,0,0,0.6);
     }
 
     /* Floating cart */
@@ -253,7 +284,7 @@
       position:fixed;
       bottom:20px;
       right:20px;
-      background:#f1c76d;
+      background:#F5C453;
       color:#111;
       padding:12px 18px;
       border-radius:50px;
@@ -263,11 +294,11 @@
       align-items:center;
       gap:10px;
       z-index:2000;
-      box-shadow:0 6px 20px rgba(0,0,0,0.4);
+      box-shadow:0 8px 22px rgba(0,0,0,0.7);
     }
     .cart-count {
       background:#111;
-      color:#f1c76d;
+      color:#F5C453;
       padding:5px 10px;
       border-radius:20px;
       font-weight:800;
@@ -279,9 +310,7 @@
       75% { transform: translateX(-3px); }
       100% { transform: translateX(0); }
     }
-    .cart-shake {
-      animation: cartShake 0.4s;
-    }
+    .cart-shake { animation: cartShake 0.4s; }
 
     /* Cart drawer */
     .cart-drawer {
@@ -291,13 +320,14 @@
       width:360px;
       max-width:100%;
       height:100vh;
-      background:#0f1220;
+      background:#080b18;
       padding:20px;
       transform:translateX(110%);
       transition:transform 0.35s ease;
       z-index:3000;
       overflow-y:auto;
-      box-shadow:-10px 0 30px rgba(0,0,0,0.6);
+      box-shadow:-10px 0 30px rgba(0,0,0,0.8);
+      border-left:1px solid rgba(245,196,83,0.2);
     }
     .cart-drawer.open {transform:translateX(0);}
     .cart-header {
@@ -311,15 +341,15 @@
       justify-content:space-between;
       align-items:center;
       padding:10px 0;
-      border-bottom:1px solid #222;
+      border-bottom:1px solid #242942;
       gap:10px;
     }
     .cart-item .meta {text-align:left; flex:1;}
     .cart-item .meta p {margin:0;}
     .actions {display:flex; align-items:center; gap:6px;}
     .btn-clear {
-      background:#333;
-      color:#f1c76d;
+      background:#252a45;
+      color:#F5C453;
       border:none;
       padding:8px 12px;
       border-radius:8px;
@@ -337,7 +367,7 @@
     .cart-total {
       margin-top:10px;
       font-weight:800;
-      color:#f1c76d;
+      color:#F5C453;
       font-size:1.1rem;
       text-align:left;
     }
@@ -351,6 +381,10 @@
       cursor:pointer;
       width:100%;
       margin-top:12px;
+      box-shadow:0 8px 20px rgba(37,211,102,0.35);
+    }
+    .btn-checkout:hover{
+      box-shadow:0 10px 26px rgba(37,211,102,0.45);
     }
     .cart-empty {
       text-align:center;
@@ -364,26 +398,36 @@
       font-weight:bold;
       display:inline-block;
       transition:all 0.3s;
-      background:#f1c76d;
+      background:#F5C453;
       color:#111;
       padding:12px 20px;
       margin-top:15px;
+      box-shadow:0 6px 16px rgba(0,0,0,0.6);
     }
-    .btn-map:hover {background:#fff; color:#111;}
+    .btn-map:hover {
+      background:#FF914D;
+      color:#111;
+    }
 
     footer {
-      background:#111;
+      background:#070b18;
       text-align:center;
       padding:25px 20px;
       font-size:0.9rem;
       color:#aaa;
       margin-top:40px;
+      border-top:1px solid #1f2440;
     }
     footer .socials {margin-bottom:12px;}
     footer .socials a {
-      color:#f1c76d;
+      color:#F5C453;
       margin:0 15px;
       font-size:1.6rem;
+      transition:color 0.2s, transform 0.2s;
+    }
+    footer .socials a:hover {
+      color:#FF914D;
+      transform:translateY(-2px);
     }
 
     @media (max-width:600px){
@@ -411,10 +455,6 @@
   <h1>Welcome to Kanha’s Grand</h1>
   <p>Authentic Telangana flavors served with love. Experience rich traditions and bold tastes in every bite.</p>
 </section>
-
-<!-- Menu section commented, using Order section as main menu
-<section id="menu"> ... </section>
--->
 
 <section id="about">
   <h2>About Us</h2>
@@ -455,9 +495,9 @@
         <p><strong>🥦 Chilli Paneer</strong><span class="badge">Veg</span></p>
         <p class="price">₹189</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Chilli Paneer',189,-1,this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Chilli Paneer',189,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Chilli Paneer',189,1,this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Chilli Paneer',189,1)">+</button>
         </div>
       </div>
 
@@ -465,9 +505,9 @@
         <p><strong>🥦 Paneer Manchurian</strong><span class="badge">Veg</span></p>
         <p class="price">₹189</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Paneer Manchurian',189,-1,this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Paneer Manchurian',189,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Paneer Manchurian',189,1,this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Paneer Manchurian',189,1)">+</button>
         </div>
       </div>
 
@@ -475,9 +515,9 @@
         <p><strong>🥦 Paneer Tikka (6pcs)</strong><span class="badge">Veg</span></p>
         <p class="price">₹199</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Paneer Tikka (6pcs)',199,-1,this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Paneer Tikka (6pcs)',199,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Paneer Tikka (6pcs)',199,1,this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Paneer Tikka (6pcs)',199,1)">+</button>
         </div>
       </div>
 
@@ -485,9 +525,9 @@
         <p><strong>🥦 Mushroom 65</strong><span class="badge">Veg</span></p>
         <p class="price">₹179</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Mushroom 65',179,-1,this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Mushroom 65',179,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Mushroom 65',179,1,this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Mushroom 65',179,1)">+</button>
         </div>
       </div>
 
@@ -495,9 +535,9 @@
         <p><strong>🥦 Chilli Babycorn</strong><span class="badge">Veg</span></p>
         <p class="price">₹179</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Chilli Babycorn',179,-1,this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Chilli Babycorn',179,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Chilli Babycorn',179,1,this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Chilli Babycorn',179,1)">+</button>
         </div>
       </div>
     </div>
@@ -511,9 +551,9 @@
         <p><strong>🍗 Ginger Chicken Dry</strong><span class="badge">Non-Veg</span></p>
         <p class="price">₹219</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Ginger Chicken Dry',219,-1,this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Ginger Chicken Dry',219,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Ginger Chicken Dry',219,1,this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Ginger Chicken Dry',219,1)">+</button>
         </div>
       </div>
 
@@ -521,9 +561,9 @@
         <p><strong>🍗 Chicken 65</strong><span class="badge">Non-Veg</span></p>
         <p class="price">₹209</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Chicken 65',209,-1,this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Chicken 65',209,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Chicken 65',209,1,this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Chicken 65',209,1)">+</button>
         </div>
       </div>
 
@@ -531,9 +571,9 @@
         <p><strong>🍗 Tandoori Leg Kebab (1pc)</strong><span class="badge">Non-Veg</span></p>
         <p class="price">₹149</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Tandoori Leg Kebab (1pc)',149,-1,this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Tandoori Leg Kebab (1pc)',149,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Tandoori Leg Kebab (1pc)',149,1,this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Tandoori Leg Kebab (1pc)',149,1)">+</button>
         </div>
       </div>
 
@@ -541,9 +581,9 @@
         <p><strong>🍗 Tandoori Chicken Tikka</strong><span class="badge">Non-Veg</span></p>
         <p class="price">₹199</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Tandoori Chicken Tikka',199,-1,this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Tandoori Chicken Tikka',199,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Tandoori Chicken Tikka',199,1,this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Tandoori Chicken Tikka',199,1)">+</button>
         </div>
       </div>
     </div>
@@ -557,9 +597,9 @@
         <p><strong>🥦 Paneer Biryani</strong><span class="badge">Veg</span></p>
         <p class="price">₹169</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Paneer Biryani',169,-1,this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Paneer Biryani',169,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Paneer Biryani',169,1,this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Paneer Biryani',169,1)">+</button>
         </div>
       </div>
 
@@ -567,9 +607,9 @@
         <p><strong>🍗 Chicken Biryani</strong><span class="badge">Best Seller</span></p>
         <p class="price">₹189</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Chicken Biryani',189,-1,this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Chicken Biryani',189,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Chicken Biryani',189,1,this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Chicken Biryani',189,1)">+</button>
         </div>
       </div>
 
@@ -577,9 +617,9 @@
         <p><strong>🍗 Mutton Biryani</strong></p>
         <p class="price">₹239</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Mutton Biryani',239,-1,this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Mutton Biryani',239,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Mutton Biryani',239,1,this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Mutton Biryani',239,1)">+</button>
         </div>
       </div>
 
@@ -587,9 +627,9 @@
         <p><strong>🍗 ✨ Nalli Gosht Biryani</strong><span class="badge">Signature</span><span class="badge">Best Seller</span></p>
         <p class="price">₹289</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Nalli Gosht Biryani',289,-1,this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Nalli Gosht Biryani',289,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Nalli Gosht Biryani',289,1,this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Nalli Gosht Biryani',289,1)">+</button>
         </div>
       </div>
 
@@ -597,9 +637,9 @@
         <p><strong>🍗 Chicken Biryani Family Pack</strong></p>
         <p class="price">₹589</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Chicken Biryani Family Pack',589,-1,this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Chicken Biryani Family Pack',589,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Chicken Biryani Family Pack',589,1,this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Chicken Biryani Family Pack',589,1)">+</button>
         </div>
       </div>
 
@@ -607,9 +647,9 @@
         <p><strong>🍗 Mutton Biryani Family Pack</strong></p>
         <p class="price">₹699</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Mutton Biryani Family Pack',699,-1,this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Mutton Biryani Family Pack',699,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Mutton Biryani Family Pack',699,1,this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Mutton Biryani Family Pack',699,1)">+</button>
         </div>
       </div>
     </div>
@@ -623,9 +663,9 @@
         <p><strong>🥦 Paneer Butter Masala</strong></p>
         <p class="price">₹169</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Paneer Butter Masala',169,-1,this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Paneer Butter Masala',169,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Paneer Butter Masala',169,1,this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Paneer Butter Masala',169,1)">+</button>
         </div>
       </div>
 
@@ -633,9 +673,9 @@
         <p><strong>🥦 Kadhai Paneer</strong></p>
         <p class="price">₹169</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Kadhai Paneer',169,-1,this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Kadhai Paneer',169,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Kadhai Paneer',169,1,this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Kadhai Paneer',169,1)">+</button>
         </div>
       </div>
 
@@ -643,9 +683,9 @@
         <p><strong>🥦 Kadhai Mushroom</strong></p>
         <p class="price">₹159</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Kadhai Mushroom',159,-1,this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Kadhai Mushroom',159,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Kadhai Mushroom',159,1,this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Kadhai Mushroom',159,1)">+</button>
         </div>
       </div>
 
@@ -653,9 +693,9 @@
         <p><strong>🥦 Palak Paneer</strong></p>
         <p class="price">₹169</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Palak Paneer',169,-1,this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Palak Paneer',169,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Palak Paneer',169,1,this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Palak Paneer',169,1)">+</button>
         </div>
       </div>
 
@@ -663,9 +703,9 @@
         <p><strong>🥦 Dal Tadka</strong></p>
         <p class="price">₹129</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Dal Tadka',129,-1,this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Dal Tadka',129,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Dal Tadka',129,1,this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Dal Tadka',129,1)">+</button>
         </div>
       </div>
 
@@ -673,9 +713,9 @@
         <p><strong>🥦 Plain Palak</strong></p>
         <p class="price">₹109</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Plain Palak',109,-1,this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Plain Palak',109,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Plain Palak',109,1,this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Plain Palak',109,1)">+</button>
         </div>
       </div>
     </div>
@@ -689,9 +729,9 @@
         <p><strong>🍗 Butter Chicken</strong><span class="badge">Best Seller</span></p>
         <p class="price">₹189</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Butter Chicken',189,-1,this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Butter Chicken',189,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Butter Chicken',189,1,this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Butter Chicken',189,1)">+</button>
         </div>
       </div>
 
@@ -699,9 +739,9 @@
         <p><strong>🍗 Telangana Chicken Curry</strong></p>
         <p class="price">₹189</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Telangana Chicken Curry',189,-1,this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Telangana Chicken Curry',189,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Telangana Chicken Curry',189,1,this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Telangana Chicken Curry',189,1)">+</button>
         </div>
       </div>
 
@@ -709,9 +749,9 @@
         <p><strong>🍗 Kadhai Chicken</strong></p>
         <p class="price">₹199</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Kadhai Chicken',199,-1,this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Kadhai Chicken',199,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Kadhai Chicken',199,1,this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Kadhai Chicken',199,1)">+</button>
         </div>
       </div>
 
@@ -719,9 +759,9 @@
         <p><strong>🍗 Telangana Mutton Curry</strong></p>
         <p class="price">₹239</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Telangana Mutton Curry',239,-1,this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Telangana Mutton Curry',239,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Telangana Mutton Curry',239,1,this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Telangana Mutton Curry',239,1)">+</button>
         </div>
       </div>
     </div>
@@ -735,9 +775,9 @@
         <p><strong>🥦 Bagara Rice with Paneer</strong></p>
         <p class="price">₹169</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Bagara Rice with Paneer',169,-1,this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Bagara Rice with Paneer',169,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Bagara Rice with Paneer',169,1,this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Bagara Rice with Paneer',169,1)">+</button>
         </div>
       </div>
 
@@ -745,9 +785,9 @@
         <p><strong>🍗 Bagara Rice with Chicken</strong></p>
         <p class="price">₹189</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Bagara Rice with Chicken',189,-1,this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Bagara Rice with Chicken',189,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Bagara Rice with Chicken',189,1,this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Bagara Rice with Chicken',189,1)">+</button>
         </div>
       </div>
 
@@ -755,9 +795,9 @@
         <p><strong>🍗 Bagara Rice with Mutton</strong></p>
         <p class="price">₹219</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Bagara Rice with Mutton',219,-1,this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Bagara Rice with Mutton',219,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Bagara Rice with Mutton',219,1,this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Bagara Rice with Mutton',219,1)">+</button>
         </div>
       </div>
     </div>
@@ -771,9 +811,9 @@
         <p><strong>🫓 Butter Naan</strong></p>
         <p class="price">₹39</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Butter Naan',39,-1,this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Butter Naan',39,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Butter Naan',39,1,this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Butter Naan',39,1)">+</button>
         </div>
       </div>
 
@@ -781,9 +821,9 @@
         <p><strong>🫓 Plain Naan</strong></p>
         <p class="price">₹29</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Plain Naan',29,-1,this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Plain Naan',29,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Plain Naan',29,1,this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Plain Naan',29,1)">+</button>
         </div>
       </div>
 
@@ -791,9 +831,9 @@
         <p><strong>🫓 Garlic Naan</strong></p>
         <p class="price">₹49</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Garlic Naan',49,-1,this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Garlic Naan',49,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Garlic Naan',49,1	this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Garlic Naan',49,1)">+</button>
         </div>
       </div>
 
@@ -801,9 +841,9 @@
         <p><strong>🫓 Tandoori Roti</strong></p>
         <p class="price">₹29</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Tandoori Roti',29,-1,this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Tandoori Roti',29,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Tandoori Roti',29,1	this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Tandoori Roti',29,1)">+</button>
         </div>
       </div>
 
@@ -811,9 +851,9 @@
         <p><strong>🫓 Tandoori Butter Roti</strong></p>
         <p class="price">₹34</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Tandoori Butter Roti',34,-1,this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Tandoori Butter Roti',34,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Tandoori Butter Roti',34,1	this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Tandoori Butter Roti',34,1)">+</button>
         </div>
       </div>
 
@@ -821,9 +861,9 @@
         <p><strong>🫓 Butter Kulcha</strong></p>
         <p class="price">₹49</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Butter Kulcha',49,-1,this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Butter Kulcha',49,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Butter Kulcha',49,1	this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Butter Kulcha',49,1)">+</button>
         </div>
       </div>
     </div>
@@ -837,9 +877,9 @@
         <p><strong>🥤 Mineral Water (1 Ltr)</strong></p>
         <p class="price">₹20</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Mineral Water (1 Ltr)',20,-1,this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Mineral Water (1 Ltr)',20,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Mineral Water (1 Ltr)',20,1	this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Mineral Water (1 Ltr)',20,1)">+</button>
         </div>
       </div>
 
@@ -847,9 +887,9 @@
         <p><strong>🥤 Mineral Water (500 ml)</strong></p>
         <p class="price">₹10</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Mineral Water (500 ml)',10,-1	this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Mineral Water (500 ml)',10,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Mineral Water (500 ml)',10,1	this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Mineral Water (500 ml)',10,1)">+</button>
         </div>
       </div>
 
@@ -857,9 +897,9 @@
         <p><strong>🥤 Soft Drinks</strong></p>
         <p class="price">₹20</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Soft Drinks',20,-1	this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Soft Drinks',20,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Soft Drinks',20,1	this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Soft Drinks',20,1)">+</button>
         </div>
       </div>
 
@@ -867,9 +907,9 @@
         <p><strong>🥤 Ginger Beer (N/A)</strong></p>
         <p class="price">₹109</p>
         <div class="order-controls">
-          <button class="qty-btn" onclick="changeQtyFromCard('Ginger Beer (N/A)',109,-1	this)">−</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Ginger Beer (N/A)',109,-1)">−</button>
           <span class="qty-display">0</span>
-          <button class="qty-btn" onclick="changeQtyFromCard('Ginger Beer (N/A)',109,1	this)">+</button>
+          <button class="qty-btn" onclick="changeQtyFromCard('Ginger Beer (N/A)',109,1)">+</button>
         </div>
       </div>
     </div>
@@ -893,7 +933,6 @@
 
     <div id="mainSubtotal">Subtotal: ₹0</div>
 
-    <!-- Fixed checkout button below address+notes -->
     <button class="btn-checkout-main" id="mainCheckoutBtn" onclick="checkout()" disabled>
       Checkout on WhatsApp
     </button>
@@ -1038,7 +1077,6 @@ function getSubtotal(){
   return cart.reduce((sum, it) => sum + it.price * it.qty, 0);
 }
 
-/* Update subtotal in main details box */
 function updateSubtotalUI(){
   const subtotalEl = document.getElementById('mainSubtotal');
   if(!subtotalEl) return;
