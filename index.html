@@ -222,6 +222,7 @@
       color:#fff;
       font-family:inherit;
       font-size:0.9rem;
+      transition:border-color 0.2s, box-shadow 0.2s;
     }
     .customer-info textarea {
       resize:vertical;
@@ -233,6 +234,13 @@
       border-color:#f1c76d;
       box-shadow:0 0 0 1px rgba(241,199,109,0.5);
     }
+
+    /* error highlight on required fields */
+    .field-error {
+      border-color:#ff4d4d !important;
+      box-shadow:0 0 0 1px rgba(255,77,77,0.7) !important;
+    }
+
     #mainSubtotal {
       margin-top:10px;
       font-weight:700;
@@ -480,7 +488,7 @@
       referrerpolicy="no-referrer-when-downgrade">
     </iframe>
   </div>
-  <a href="https://www.google.com/maps/place/Kanha's+Grand/@18.8769496,79.4426242,17z" target="_blank" class="btn-map">Open in Google Maps</a>
+  <a href="https://maps.google.com/maps/dir//Kanha's+Grand+Market+Rd+old,+current+office+road,+nearby+kotak+manindra+bank,+Iqbal+Ahmed+Nagar+Mancherial,+Telangana+504208/@18.8769496,79.4451991,16z/data=!4m5!4m4!1m0!1m2!1m1!1s0x3a32cb0011e98787:0x6f24cff241255d8b" target="_blank" class="btn-map">Open in Google Maps</a>
 </section>
 
 <section id="order">
@@ -923,7 +931,7 @@
     <input type="text" id="customerName" placeholder="Enter your name">
 
     <label for="customerPhone">Mobile Number</label>
-    <input type="tel" id="customerPhone" placeholder="WhatsApp reachable number">
+    <input type="tel" id="customerPhone" placeholder="WhatsApp reachable number" inputmode="numeric" maxlength="10">
 
     <label for="customerAddress">Delivery Address</label>
     <textarea id="customerAddress" placeholder="Flat / Street / Area / Landmark"></textarea>
@@ -937,10 +945,6 @@
       Checkout on WhatsApp
     </button>
   </div>
-
-  <p style="margin-top:18px; color:#cfcfcf; max-width:700px;">
-    Use + / − to set quantities. Enter your details and tap “Checkout on WhatsApp” – your full order and address will be sent to us on WhatsApp.
-  </p>
 </section>
 
 <footer>
@@ -1105,7 +1109,9 @@ function updateCheckoutButtonState(){
   const name = document.getElementById('customerName').value.trim();
   const phone = document.getElementById('customerPhone').value.trim();
   const address = document.getElementById('customerAddress').value.trim();
-  btn.disabled = !(name && phone && address);
+  const phoneDigits = phone.replace(/\D/g, '');
+
+  btn.disabled = !(name && address && phoneDigits.length === 10);
 }
 
 function increaseQty(i){
@@ -1134,19 +1140,44 @@ function toggleCart(){
   renderCartDrawer();
 }
 
+/* Improved checkout with field focus + phone validation + highlights */
 function checkout(){
   if(cart.length === 0){
     alert('Your cart is empty!');
     return;
   }
 
-  const name = document.getElementById('customerName').value.trim();
-  const phone = document.getElementById('customerPhone').value.trim();
-  const address = document.getElementById('customerAddress').value.trim();
-  const notes = document.getElementById('customerNotes').value.trim();
+  const nameEl = document.getElementById('customerName');
+  const phoneEl = document.getElementById('customerPhone');
+  const addressEl = document.getElementById('customerAddress');
+  const notesEl = document.getElementById('customerNotes');
 
-  if(!name || !phone || !address){
+  const name = nameEl.value.trim();
+  const phone = phoneEl.value.trim();
+  const address = addressEl.value.trim();
+  const notes = notesEl.value.trim();
+  const phoneDigits = phone.replace(/\D/g, '');
+
+  // Clear previous error states
+  [nameEl, phoneEl, addressEl].forEach(el => el.classList.remove('field-error'));
+
+  const missing = [];
+  if(!name) missing.push(nameEl);
+  if(!phone) missing.push(phoneEl);
+  if(!address) missing.push(addressEl);
+
+  if(missing.length > 0){
+    missing.forEach(el => el.classList.add('field-error'));
+    missing[0].focus();
     alert('Please fill your Name, Mobile Number, and Address.');
+    return;
+  }
+
+  // Phone validation: must be 10 digits
+  if(phoneDigits.length !== 10){
+    phoneEl.classList.add('field-error');
+    phoneEl.focus();
+    alert('Please enter a valid 10-digit mobile number.');
     return;
   }
 
@@ -1159,7 +1190,7 @@ function checkout(){
   message += "%0ASubtotal: ₹" + total + "%0A";
   message += "%0ACustomer Details:%0A";
   message += "Name: " + encodeURIComponent(name) + "%0A";
-  message += "Mobile: " + encodeURIComponent(phone) + "%0A";
+  message += "Mobile: " + encodeURIComponent(phoneDigits) + "%0A";
   message += "Address: " + encodeURIComponent(address) + "%0A";
   if(notes){
     message += "Notes: " + encodeURIComponent(notes) + "%0A";
@@ -1171,10 +1202,11 @@ function checkout(){
   // Clear cart and fields after sending
   cart = [];
   saveCart();
-  document.getElementById('customerName').value = '';
-  document.getElementById('customerPhone').value = '';
-  document.getElementById('customerAddress').value = '';
-  document.getElementById('customerNotes').value = '';
+  nameEl.value = '';
+  phoneEl.value = '';
+  addressEl.value = '';
+  notesEl.value = '';
+  [nameEl, phoneEl, addressEl].forEach(el => el.classList.remove('field-error'));
   updateCheckoutButtonState();
 }
 
@@ -1193,7 +1225,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
   ['customerName','customerPhone','customerAddress'].forEach(id=>{
     const el = document.getElementById(id);
     if(el){
-      el.addEventListener('input', updateCheckoutButtonState);
+      el.addEventListener('input', ()=>{
+        el.classList.remove('field-error');
+        updateCheckoutButtonState();
+      });
     }
   });
 });
